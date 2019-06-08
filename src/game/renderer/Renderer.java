@@ -1,6 +1,9 @@
 package game.renderer;
 
 import game.GameObject;
+import game.Settings;
+import game.player.Player1;
+import game.player.Player2;
 import tklibs.SpriteUtils;
 
 import java.awt.*;
@@ -12,9 +15,8 @@ public class Renderer {
     public BufferedImage image;
     public ArrayList<BufferedImage> images;
     public int currentImageIndex;
-    public int frameCount;
-    public boolean isOnce;
-
+    public int frameCount,loop,countloop;
+    public boolean isOnce,isRevivalPlayer = false;
     public Renderer() {
 
     }
@@ -29,12 +31,18 @@ public class Renderer {
             images = SpriteUtils.loadImages(url);
             frameCount = 0;
             currentImageIndex = 0;
+            countloop=0;
         }
     }
     public Renderer(String url,boolean isOnce){
         this(url);
         this.isOnce = isOnce;
 
+    }
+    public Renderer(String url,int loop,boolean isRevivalPlayer){
+        this(url);
+        this.loop = loop;
+        this.isRevivalPlayer = isRevivalPlayer;
     }
     public void render(Graphics g, GameObject master){
         if(image != null){
@@ -44,17 +52,29 @@ public class Renderer {
             BufferedImage currrentImage = images.get(currentImageIndex);
             drawImage(g,currrentImage,master);
             frameCount++;
-            if(frameCount>15){
+            if(frameCount>4){
                 currentImageIndex++;
                 if(currentImageIndex >=images.size()){
                     if(isOnce){
-                        master.deactive();
+                        this.deactive(master);
+                    }
+                    if(loop!=0){
+                        countloop++;
+                        if(countloop==loop){
+                            countloop = 0;
+                            if (isRevivalPlayer) Settings.PlayerRevival = true;
+                            this.deactive(master);
+                        }
                     }
                     currentImageIndex = 0;
                 }
                 frameCount = 0;
             }
         }
+    }
+
+    public void deactive(GameObject master) {
+        master.deactive();
     }
 
     private void drawImage(Graphics g, BufferedImage image,GameObject master) {

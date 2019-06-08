@@ -1,22 +1,21 @@
 package game;
-
-import game.enemy.EnemySummoner;
-import game.player.Player;
-import game.player.item.ItemSummoner;
+import game.maps.Map;
+import game.player.Player1;
+import game.player.Player2;
+import game.player.PlayerSummer;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class GamePanel extends JPanel {
-    Player player;
-    Background background;
-    EnemySummoner enemy;
-    ItemSummoner Item;
+    //Player1 player1;
+    PlayerSummer playerSummer;
+    Map map;
     public GamePanel() {
-        background = new Background();
-        player = new Player();
-        enemy= new EnemySummoner();
-        Item = new ItemSummoner();
+        playerSummer = new PlayerSummer();
+        map = Map.load("assets/images/Map/map1/map.json");
+        //map = Map.load("assets/images/Map/map2/map.json");
+        map.generate();
     }
     @Override
     public void paint(Graphics g) {
@@ -44,10 +43,7 @@ public class GamePanel extends JPanel {
     }
 
     public void runAll() {
-//        for(String key: GameObject.hashMaparr.keySet()){
-//            System.out.println(key);
-//        }
-//        System.out.println(GameObject.hashMaparr.size());
+      //  System.out.println(GameObject.objects.size() +" "+Settings.Index);
         for(int i=0;i<GameObject.objects.size();i++){
             GameObject object = GameObject.objects.get(i);
             if(object.active){

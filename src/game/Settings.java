@@ -2,20 +2,19 @@ package game;
 
 public class Settings {
     // Game
-    public static final int GAME_WIDTH = 1000;
-    public static final int GAME_HEIGHT = 720;
+    public static final int GAME_WIDTH = 672;
+    public static final int GAME_HEIGHT = 672;
     public static int score = 0;
     // background
-    public static final int BACKGROUND_WIDTH = 1000;
-    public static final int BACKGROUND_HEIGHT = 720;
+    public static final int BACKGROUND_WIDTH = 672;
+    public static final int BACKGROUND_HEIGHT = 672;
     // player
-    public static final int PLAYER_WIDTH = 32;
-    public static final int PLAYER_HEIGHT = 48;
-    public static Vector2D PLAYER_POSITION = new Vector2D(200,500);
+    public static final int PLAYER_WIDTH = 35;
+    public static final int PLAYER_HEIGHT = 35;
+    public static boolean Player1active = false;
+    public static boolean Player2active = false;
+    public static boolean PlayerRevival= false;
     //arraylist
-    public static final int BAGKROUND_INDEX = 1;
-    public static final int PLAYER_INDEX = 2;
-    public static final int ENEMYSUMMORNER_INDEX = 3;
-    public static final int ITEM_INDEX = 4;
+    public static int Index = 0;
 
 }

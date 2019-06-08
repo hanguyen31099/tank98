@@ -1,10 +1,14 @@
 package game.explosion;
 
 import game.GameObject;
+import game.Settings;
 import game.renderer.Renderer;
 
 public class Explosion extends GameObject {
     public Explosion() {
-        renderer = new Renderer("assets/images/enemies/explosion", true);
+        key ="Explosion";
+        renderer = new Renderer("assets/images/Explosion/explosion", true);
+        GameObject.addToHashMap(key,this);
     }
+
 }

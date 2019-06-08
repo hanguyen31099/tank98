@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="14" height="14" tilewidth="48" tileheight="48" infinite="0" nextlayerid="2" nextobjectid="1">
+ <tileset firstgid="1" source="wall1.tsx"/>
+ <tileset firstgid="2" source="Wall-while.tsx"/>
+ <tileset firstgid="4" source="tree1.tsx"/>
+ <tileset firstgid="5" source="wall-down.tsx"/>
+ <tileset firstgid="7" source="wall-left.tsx"/>
+ <tileset firstgid="9" source="wall-right.tsx"/>
+ <tileset firstgid="11" source="bird.tsx"/>
+ <tileset firstgid="12" source="wall-up.tsx"/>
+ <tileset firstgid="14" source="bird-down.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="14" height="14">
+  <data encoding="csv">
+0,1,0,0,0,0,9,14,7,0,0,0,1,4,
+0,1,0,0,0,0,12,12,12,0,0,0,1,4,
+0,1,1,0,0,0,0,0,0,0,0,1,1,4,
+0,4,4,4,4,4,4,4,4,4,4,0,0,4,
+4,4,4,4,0,0,0,4,4,4,4,4,4,4,
+0,0,1,1,1,0,2,2,2,0,0,1,1,0,
+4,0,1,0,0,0,0,0,0,0,0,0,1,0,
+4,4,0,4,2,0,1,1,1,1,0,0,0,0,
+4,4,4,4,0,0,0,0,1,1,1,0,2,4,
+4,0,1,1,1,1,0,0,0,0,1,0,0,4,
+4,4,0,1,0,0,0,0,0,0,0,4,4,4,
+4,4,0,1,0,0,0,0,0,0,0,4,1,4,
+0,4,0,1,0,0,5,5,5,0,4,0,1,4,
+4,4,0,0,0,0,9,11,7,0,4,0,0,4
+</data>
+ </layer>
+</map>

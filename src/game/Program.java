@@ -4,9 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 /**
  * Created by huynq on 7/4/17.
  */
@@ -14,7 +11,7 @@ public class Program {
     public static void main(String[] args) {
         JFrame window = new JFrame();
         GamePanel panel = new GamePanel();
-        panel.setBackground(Color.CYAN);
+        panel.setBackground(Color.BLACK);
         panel.setPreferredSize(new Dimension(Settings.GAME_WIDTH, Settings.GAME_HEIGHT));
 
         window.add(panel); // location
@@ -27,44 +24,68 @@ public class Program {
             @Override
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode() == KeyEvent.VK_W) {
-                    KeyEventPress.isUpPress = true;
+                    KeyEventPress.isPlayer1UpPress = true;
                 }
                 if(e.getKeyCode() == KeyEvent.VK_A) {
-                    KeyEventPress.isLeftPress = true;
-                }
-                if(e.getKeyCode() == KeyEvent.VK_D) {
-                    KeyEventPress.isRightPress = true;
+                    KeyEventPress.isPlayer1LeftPress = true;
                 }
                 if(e.getKeyCode() == KeyEvent.VK_S) {
-                    KeyEventPress.isDownPress = true;
+                    KeyEventPress.isPlayer1DownPress = true;
+                }
+                if(e.getKeyCode() == KeyEvent.VK_D) {
+                    KeyEventPress.isPlayer1RightPress = true;
                 }
                 if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-                    KeyEventPress.isFirePress = true;
+                    KeyEventPress.isPlayer1FirePress = true;
                 }
-                if(e.getKeyCode()==KeyEvent.VK_1){
-                    KeyEventPress.isBoom = true;
+                if(e.getKeyCode() == KeyEvent.VK_UP) {
+                    KeyEventPress.isPlayer2UpPress = true;
+                }
+                if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+                    KeyEventPress.isPlayer2DownPress = true;
+                }
+                if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+                    KeyEventPress.isPlayer2LeftPress = true;
+                }
+                if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                    KeyEventPress.isPlayer2RightPress = true;
+                }
+                if(e.getKeyCode() == KeyEvent.VK_CONTROL) {
+                    KeyEventPress.isPlayer2FirePress = true;
                 }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
                 if(e.getKeyCode() == KeyEvent.VK_W) {
-                    KeyEventPress.isUpPress = false;
-                }
-                if(e.getKeyCode() == KeyEvent.VK_A) {
-                    KeyEventPress.isLeftPress = false;
-                }
-                if(e.getKeyCode() == KeyEvent.VK_D) {
-                    KeyEventPress.isRightPress = false;
+                    KeyEventPress.isPlayer1UpPress = false;
                 }
                 if(e.getKeyCode() == KeyEvent.VK_S) {
-                    KeyEventPress.isDownPress = false;
+                    KeyEventPress.isPlayer1DownPress = false;
+                }
+                if(e.getKeyCode() == KeyEvent.VK_A) {
+                    KeyEventPress.isPlayer1LeftPress = false;
+                }
+                if(e.getKeyCode() == KeyEvent.VK_D) {
+                    KeyEventPress.isPlayer1RightPress = false;
                 }
                 if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-                    KeyEventPress.isFirePress = false;
+                    KeyEventPress.isPlayer1FirePress = false;
                 }
-                if(e.getKeyCode()==KeyEvent.VK_1){
-                    KeyEventPress.isBoom = false;
+                if(e.getKeyCode() == KeyEvent.VK_UP) {
+                    KeyEventPress.isPlayer2UpPress = false;
+                }
+                if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+                    KeyEventPress.isPlayer2DownPress = false;
+                }
+                if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+                    KeyEventPress.isPlayer2LeftPress = false;
+                }
+                if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                    KeyEventPress.isPlayer2RightPress = false;
+                }
+                if(e.getKeyCode() == KeyEvent.VK_CONTROL) {
+                    KeyEventPress.isPlayer2FirePress = false;
                 }
             }
         };
@@ -72,10 +93,9 @@ public class Program {
         window.setVisible(true);
 
         panel.gameLoop();
-
         // ctrl + ? : comment/uncomment
         // alt + enter : sua loi code
         // (fn +) shift + f6 : doi ten
-        // alt + ctrl + l : format code
+//        // alt + ctrl + l : format code
     }
 }

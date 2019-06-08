@@ -1,5 +1,6 @@
 package game;
 
+import game.Enity.wall.Wall;
 import game.Physics.BoxCollider;
 import game.renderer.Renderer;
 
@@ -22,9 +23,10 @@ public class GameObject {
             if(!list.contains(mapKey)) list.add(other);
         }
     }
-    public static <E extends GameObject>E recycle(Class<E> cls){
+
+    public static <E extends GameObject>E recycle(String str,Class<E> cls){
         // 1. tim phan tu bi deactive >> reset phan tu thi >> tra ve
-        E object = findInactive(cls);
+        E object = findInactive(str);
         if(object!=null){
             object.reset();
             return object;
@@ -37,36 +39,69 @@ public class GameObject {
             ex.printStackTrace();
             return null;
         }
-
     }
-
-    public static <E extends GameObject>E findInactive(Class<E> cls){
+    public static <E extends GameObject>E recycleSpectical(String str,Class<E> cls){
+        // 1. tim phan tu bi deactive >> reset phan tu thi >> tra ve
+        E object = findInactive(str);
+        if(object!=null){
+            return object;
+        }
+        // 2. k tim thay thi tao moi
+        try{
+            object = cls.getConstructor().newInstance();
+            return object;
+        } catch (Exception ex){
+            ex.printStackTrace();
+            return null;
+        }
+    }
+    public static <E extends GameObject>E findInactive(String str){
         // cls ~ Player.class || BackGround.class
         // E ~ player || background
-        for (int i=0;i<objects.size();i++){
-            GameObject object = objects.get(i);
-            // object ~ cls
-            if(cls.isAssignableFrom(object.getClass())
-                    && !object.active){
-                return (E)object;
+        if(hashMaparr.get(str)!=null){
+            for (int i=0;i<hashMaparr.get(str).size();i++){
+                GameObject object = objects.get(hashMaparr.get(str).get(i).Index);
+                // object ~ cls
+                if(!object.active){
+                    return (E)object;
+                }
             }
         }
         return null;
     }
-
-    public static <E extends GameObject>E findInterSects(Class<E> cls,BoxCollider hitBox){
-        for (int i = 0; i <objects.size() ; i++) {
-            GameObject object = objects.get(i);
-            //1. active
-            //2. object ~ cls
-            //3. object.hitbox !=null ~ intersects(hitBox)
-            if (object.active
-                    && cls.isAssignableFrom(object.getClass())
-                    && object.hitBox != null
-                    && object.hitBox.interset(hitBox))
+    public static <E extends GameObject>E findInterSectsWall(String str,BoxCollider hitBox,String find,
+                                                             GameObject master, Class<E> cls, ArrayList<GameObject> wallArr){
+        int dem = 0;
+        for (int i=0;i<hashMaparr.get(str).size();i++){
+            GameObject object = hashMaparr.get(str).get(i);
+            if(object.active
+                    && object.Index != master.Index
+                    && object.hitBox!=null
+                    && object.hitBox.interset(hitBox.SpcecticalHitBox(find))
+                    && cls.isAssignableFrom(object.getClass()))
             {
+                dem++;
+                wallArr.add(object);
+            }
+            if (dem>=2){
+                break;
+            }
+        }
+        return null;
+    }
+    public static <E extends GameObject>E findInterSects(String str,BoxCollider hitBox,Class<E> cls,GameObject master){
+        if(hashMaparr.get(str)!=null){
+            for (int i=0;i<hashMaparr.get(str).size();i++){
+                GameObject object = objects.get(hashMaparr.get(str).get(i).Index);
+                if(object.active
+                        && object.Index != master.Index
+                        && object.hitBox!=null
+                        && object.hitBox.interset(hitBox)
+                        && cls.isAssignableFrom(object.getClass()))
+                {
+                    return(E) object;
+                }
 
-                return (E) object;
             }
         }
         return null;
@@ -80,14 +115,23 @@ public class GameObject {
     public Vector2D velocity;
     public BoxCollider hitBox;
     public Vector2D anchor;
-    public ArrayList<BoxCollider> arrBox;
     public String key;
+    public Vector2D Go;
+    public int Index;
+    public Vector2D bulletGoing;
+    public String WallName;
+    public String Find;
+    public boolean immune;
     public GameObject(){
         position = new Vector2D(0,0);
         velocity = new Vector2D(0,0);
         anchor = new Vector2D(0.5,0.5);
+        bulletGoing = new Vector2D(0,0);
+        this.Index = Settings.Index;
+        Settings.Index++;
         objects.add(this);
         active = true;
+        immune = true;
     }
     public void render(Graphics g){
         if(renderer!=null){
