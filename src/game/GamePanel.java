@@ -15,12 +15,12 @@ public class GamePanel extends JPanel {
     PlayerSummer playerSummer;
     Map map;
     public GamePanel() {
-        playerSummer = new PlayerSummer();
-        map = Map.load("assets/images/Map/map1/map.json");
-        //map = Map.load("assets/images/Map/map2/map.json");
-        map.generate();
+//        playerSummer = new PlayerSummer();
+//        map = Map.load("assets/images/Map/map1/map.json");
+//        //map = Map.load("assets/images/Map/map2/map.json");
+//        map.generate();
 
-       // SceneManager.signNewScene(new SceneWelcome());
+       SceneManager.signNewScene(new SceneWelcome());
     }
 
     @Override
@@ -53,7 +53,7 @@ public class GamePanel extends JPanel {
             GameObject object = GameObject.objects.get(i);
             if(object.active){
                 object.run();
-                
+
             }
         }
 
