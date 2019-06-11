@@ -36,19 +36,19 @@ public class Player2 extends Player {
             bullet.Find = "Player1";
             if(isGoing=="Up"){
                 bullet.velocity.set(0,-5);
-                bullet.position.set(this.position.x+3,this.position.y-21);
+                bullet.position.set(this.position.x,this.position.y);
             }
             if(isGoing=="Down"){
                 bullet.velocity.set(0,5);
-                bullet.position.set(this.position.x+3,this.position.y+21);
+                bullet.position.set(this.position.x,this.position.y);
             }
             if(isGoing=="Left"){
                 bullet.velocity.set(-5,0);
-                bullet.position.set(this.position.x-21,this.position.y);
+                bullet.position.set(this.position.x,this.position.y);
             }
             if(isGoing=="Right"){
                 bullet.velocity.set(5,0);
-                bullet.position.set(this.position.x+21,this.position.y);
+                bullet.position.set(this.position.x,this.position.y);
             }
 
 

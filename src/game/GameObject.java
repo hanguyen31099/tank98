@@ -60,15 +60,19 @@ public class GameObject {
         // E ~ player || background
         if(hashMaparr.get(str)!=null){
             for (int i=0;i<hashMaparr.get(str).size();i++){
-                GameObject object = objects.get(hashMaparr.get(str).get(i).Index);
-                // object ~ cls
-                if(!object.active){
-                    return (E)object;
+                if(hashMaparr.get(str).get(i)!=null){
+                    GameObject object = objects.get(hashMaparr.get(str).get(i).Index);
+                    // object ~ cls
+                    if(!object.active){
+                        return (E)object;
+                    }
                 }
             }
         }
         return null;
     }
+
+
     public static <E extends GameObject>E findInterSectsWall(String str,BoxCollider hitBox,String find,
                                                              GameObject master, Class<E> cls, ArrayList<GameObject> wallArr){
         int dem = 0;
@@ -92,21 +96,28 @@ public class GameObject {
     public static <E extends GameObject>E findInterSects(String str,BoxCollider hitBox,Class<E> cls,GameObject master){
         if(hashMaparr.get(str)!=null){
             for (int i=0;i<hashMaparr.get(str).size();i++){
-                GameObject object = objects.get(hashMaparr.get(str).get(i).Index);
-                if(object.active
-                        && object.Index != master.Index
-                        && object.hitBox!=null
-                        && object.hitBox.interset(hitBox)
-                        && cls.isAssignableFrom(object.getClass()))
-                {
-                    return(E) object;
+                if(hashMaparr.get(str).get(i)!=null) {
+                    GameObject object = objects.get(hashMaparr.get(str).get(i).Index);
+                    if (object.active
+                            && object.Index != master.Index
+                            && object.hitBox != null
+                            && object.hitBox.interset(hitBox)
+                            && cls.isAssignableFrom(object.getClass())) {
+                        return (E) object;
+                    }
                 }
 
             }
         }
         return null;
     }
+    public static void ClearAll(){
+        objects.clear();
+        for (var key : GameObject.hashMaparr.keySet()) {
+            GameObject.hashMaparr.get(key).clear();
+        }
 
+    }
     // dinh nghia doi tuong
     public boolean active;
     public Renderer renderer;

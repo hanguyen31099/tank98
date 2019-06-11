@@ -4,6 +4,7 @@ import game.Enity.Platform;
 import game.Enity.Tree;
 import game.GameObject;
 import game.Settings;
+import game.player.PlayerSummer;
 
 import java.util.List;
 

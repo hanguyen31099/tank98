@@ -34,7 +34,6 @@ public class PlayerBullet extends GameObject { // PlayerBulletType2
     private void checkBullet() {
         PlayerBullet bullet = GameObject.findInterSects("PlayerBullet",this.hitBox,PlayerBullet.class,this);
         if(bullet!=null){
-            System.out.println(1);
             this.deactive();
             bullet.deactive();
         }

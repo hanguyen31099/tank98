@@ -16,4 +16,6 @@ public class KeyEventPress {
     public static boolean isPlayer2LeftPress = false;
     public static boolean isPlayer2RightPress = false;
     public static boolean isPlayer2FirePress = false;
+    //init
+    public static boolean isKeyPress = false;
 }

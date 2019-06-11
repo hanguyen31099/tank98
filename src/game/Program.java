@@ -23,6 +23,7 @@ public class Program {
         KeyAdapter keyHandler = new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
+                KeyEventPress.isKeyPress = true;
                 if(e.getKeyCode() == KeyEvent.VK_W) {
                     KeyEventPress.isPlayer1UpPress = true;
                 }
@@ -57,6 +58,7 @@ public class Program {
 
             @Override
             public void keyReleased(KeyEvent e) {
+                KeyEventPress.isKeyPress = false;
                 if(e.getKeyCode() == KeyEvent.VK_W) {
                     KeyEventPress.isPlayer1UpPress = false;
                 }
@@ -92,7 +94,8 @@ public class Program {
         window.addKeyListener(keyHandler);
         window.setVisible(true);
 
-        panel.gameLoop();
+        panel.
+                gameLoop();
         // ctrl + ? : comment/uncomment
         // alt + enter : sua loi code
         // (fn +) shift + f6 : doi ten

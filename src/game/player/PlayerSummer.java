@@ -18,10 +18,12 @@ public class PlayerSummer extends GameObject {
     Player1 player1;
     Player2 player2;
     public PlayerSummer(){
+        key = "PlayerSummer";
         clone1 = new Vector2D();
         clone2 = new Vector2D();
         player1 = new Player1();
         player2 = new Player2();
+        GameObject.addToHashMap(key,this);
     }
 
     @Override
@@ -58,7 +60,7 @@ public class PlayerSummer extends GameObject {
             if( CountDiePlayer2>=120||isFist){
                 player2Reset = true;
                 CountDiePlayer2 = 0;
-                ExplosionReset explosion = GameObject.recycle("ExplosionReset",ExplosionReset.class);
+                ExplosionReset explosion = new ExplosionReset();
                 Settings.Player2active=true;
                 int radom = Mathx.random(1,2);
                 switch (radom) {

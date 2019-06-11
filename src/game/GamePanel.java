@@ -3,6 +3,9 @@ import game.maps.Map;
 import game.player.Player1;
 import game.player.Player2;
 import game.player.PlayerSummer;
+import game.scene.SceneManager;
+import game.scene.SceneStage1;
+import game.scene.SceneWelcome;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +19,10 @@ public class GamePanel extends JPanel {
         map = Map.load("assets/images/Map/map1/map.json");
         //map = Map.load("assets/images/Map/map2/map.json");
         map.generate();
+
+       // SceneManager.signNewScene(new SceneWelcome());
     }
+
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -43,11 +49,11 @@ public class GamePanel extends JPanel {
     }
 
     public void runAll() {
-      //  System.out.println(GameObject.objects.size() +" "+Settings.Index);
         for(int i=0;i<GameObject.objects.size();i++){
             GameObject object = GameObject.objects.get(i);
             if(object.active){
                 object.run();
+                
             }
         }
 
