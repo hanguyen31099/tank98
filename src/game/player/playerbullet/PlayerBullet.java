@@ -18,6 +18,7 @@ public class PlayerBullet extends GameObject { // PlayerBulletType2
 
     public PlayerBullet() {
         this.renderer = new PlayerBulletRenderer(this);
+        this.position.set(-30,-30);
         hitBox = new BoxCollider(this,10,13);
         this.key = "PlayerBullet";
         GameObject.addToHashMap(key,this);

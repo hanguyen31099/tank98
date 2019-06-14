@@ -33,7 +33,7 @@ public class Player1 extends Player {
             count = 0;
             PlayerBullet1 bullet = GameObject.recycle("PlayerBullet1",PlayerBullet1.class);
             bullet.isresus = true;
-            bullet.Find = "Player2";
+            //bullet.Find = "Player2";
             if(isGoing=="Up"){
                 bullet.velocity.set(0,-5);
                 bullet.position.set(this.position.x,this.position.y);

@@ -94,8 +94,7 @@ public class Program {
         window.addKeyListener(keyHandler);
         window.setVisible(true);
 
-        panel.
-                gameLoop();
+        panel.gameLoop();
         // ctrl + ? : comment/uncomment
         // alt + enter : sua loi code
         // (fn +) shift + f6 : doi ten

@@ -4,6 +4,7 @@ import game.GameObject;
 import game.Settings;
 import game.Vector2D;
 import game.explosion.ExplosionReset;
+import game.player.playerbullet.PlayerBullet;
 import game.player.shield.Shield;
 import tklibs.Mathx;
 
@@ -13,16 +14,20 @@ public class PlayerSummer extends GameObject {
     boolean player1Reset = false;
     boolean player2Reset = false;
     boolean isFist = true;
-    Vector2D clone1 ;
-    Vector2D clone2 ;
+    Vector2D clone1;
+    Vector2D clone2;
     Player1 player1;
     Player2 player2;
+    PlayerBullet playerBullet;
     public PlayerSummer(){
         key = "PlayerSummer";
         clone1 = new Vector2D();
         clone2 = new Vector2D();
         player1 = new Player1();
         player2 = new Player2();
+        playerBullet = new PlayerBullet();
+        player1.deactive();
+        player2.deactive();
         GameObject.addToHashMap(key,this);
     }
 
@@ -54,6 +59,7 @@ public class PlayerSummer extends GameObject {
             player1Reset = false;
             Player1 player1 = GameObject.recycle("Player1",Player1.class);
             player1.position.set(clone1);
+            System.out.println(player1.active);
         }
         if(isFist==true||Settings.Player2active==false){
             CountDiePlayer2++;

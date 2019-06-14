@@ -112,11 +112,11 @@ public class GameObject {
         return null;
     }
     public static void ClearAll(){
+        Settings.Index = 0;
         objects.clear();
         for (var key : GameObject.hashMaparr.keySet()) {
             GameObject.hashMaparr.get(key).clear();
         }
-
     }
     // dinh nghia doi tuong
     public boolean active;

@@ -5,6 +5,8 @@ import game.Enity.wall.Wall;
 import game.explosion.Explosion;
 import game.Physics.BoxCollider;
 import game.explosion.ExplosionReset;
+import game.player.items.ItemHp;
+import game.player.items.ItemShield;
 import game.player.shield.Shield;
 import game.player.sphere.Sphere;
 import tklibs.Mathx;
@@ -31,7 +33,6 @@ public class Player extends GameObject {
         key = "Player";
         Clone = new Vector2D();
         this.position.set(-30,-30);
-        active = false;
         hp = 10;
         GameObject.addToHashMap(key,this);
         shield = GameObject.recycle("Shield",Shield.class);
@@ -47,9 +48,23 @@ public class Player extends GameObject {
             this.Go.set(0,0);
         }
         position.add(Go.x,Go.y);
+        this.checkItem();
         super.run();
         Go.set(0,0);
         this.limit();
+    }
+
+    public void checkItem() {
+        ItemHp itemHp = GameObject.findInterSects("ItemHp",this.hitBox,ItemHp.class,this);
+        if(itemHp!=null){
+            itemHp.deactive();
+            this.hp++;
+        }
+        ItemShield itemShield = GameObject.findInterSects("ItemShield",this.hitBox,ItemShield.class,this);
+        if(itemShield!=null){
+            itemShield.deactive();
+            shield.reset();
+        }
     }
 
     public void ChangeShere() {

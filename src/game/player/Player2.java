@@ -13,7 +13,6 @@ public class Player2 extends Player {
         key = "Player2";
         Find = "Player1";
         this.renderer = new Player2Render(this);
-        position.set(500,50);
         anchor.set(0.4,0.5);
         hitBox = new BoxCollider(this,Settings.PLAYER_WIDTH,Settings.PLAYER_HEIGHT);
         dame = 3;
@@ -33,14 +32,14 @@ public class Player2 extends Player {
             isFrist = false;
             count = 0;
             PlayerBullet2 bullet = GameObject.recycle("PlayerBullet2",PlayerBullet2.class);
-            bullet.Find = "Player1";
+            //bullet.Find = "Player1";
             if(isGoing=="Up"){
                 bullet.velocity.set(0,-5);
-                bullet.position.set(this.position.x,this.position.y);
+                bullet.position.set(this.position.x+3,this.position.y);
             }
             if(isGoing=="Down"){
                 bullet.velocity.set(0,5);
-                bullet.position.set(this.position.x,this.position.y);
+                bullet.position.set(this.position.x+3,this.position.y);
             }
             if(isGoing=="Left"){
                 bullet.velocity.set(-5,0);

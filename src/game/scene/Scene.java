@@ -1,10 +1,6 @@
 package game.scene;
 
-public  class Scene{
-    void init(){
-
-    }
-    public void clear(){
-
-    }
+public  abstract class Scene{
+    public abstract  void init();
+    public abstract void clear();
 }
